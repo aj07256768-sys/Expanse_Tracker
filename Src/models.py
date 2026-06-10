@@ -1,6 +1,7 @@
 from datetime import datetime
+
 class Transaction:
-    def __init__(self,Amount:float,category:str,Description:str= ""):
+    def __init__(self, Amount: float, category: str, Description: str = ""):
         self.Amount = Amount
         self.category = category
         self.Description = Description
@@ -8,23 +9,21 @@ class Transaction:
 
     def To_dic(self) -> dict:
         return {
-            "Amount":self.Amount,
-            "category":self.category,
-            "Description":self.Description,
-            "date":self.date
-
+            "Amount": self.Amount,
+            "category": self.category,
+            "Description": self.Description,
+            "date": self.date,
+            "type": getattr(self, 'type', 'Unknown')  # Safely includes 'Expense' or 'Income' in the dictionary
         }  
 
 
-
 class Expense(Transaction):
-    def __init__(self,Amount,category,Description):
-        super().__init_(Amount,category,Description)  
-        self.type='Expense' 
-
+    def __init__(self, Amount, category, Description):
+        super().__init__(Amount, category, Description)  # Fixed: added missing closing underscore
+        self.type = 'Expense' 
 
 
 class Income(Transaction):
-    def __init__(self,Amount,category,Description):
-        super().__init_(Amount,category,Description)
-        self.type='Income' 
+    def __init__(self, Amount, category, Description):
+        super().__init__(Amount, category, Description)  # Fixed: added missing closing underscore
+        self.type = 'Income'
