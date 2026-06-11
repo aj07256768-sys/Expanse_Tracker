@@ -28,7 +28,7 @@ class Data_base:
         current_data = self.load_data()
         # Safety boundary check
         if 0 <= index < len(current_data):
-            removed_item = current_data.pop(index) # Alters current_data in place
-            self.data_save(current_data)           # Saves remaining clean data
+            removed_item = current_data.pop(index) 
+            self.data_save(current_data)           
             return removed_item
         return None 
