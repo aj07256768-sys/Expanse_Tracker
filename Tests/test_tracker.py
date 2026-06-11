@@ -34,7 +34,7 @@ def test_income_class_serialization():
     serialized_data = inc_obj.To_dic()
     
     assert serialized_data["Amount"] == 2000.0
-    assert serialized_data["type"] == "Income "
+    assert serialized_data["type"] == "Income"
 
 
 def test_database_initialization_creates_empty_list():
@@ -83,4 +83,4 @@ def test_data_delete_with_invalid_index_returns_none():
     
     deleted_item = db.data_delete(99)
     
-    assert deleted_item is None
+    assert deleted_item is None 
