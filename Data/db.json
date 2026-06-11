@@ -1,51 +1,9 @@
 [
-   {
-      "Amount": 6777.0,
-      "category": "bills ",
-      "Description": "kkkkk",
-      "date": "2026-06-10 23:39:49",
-      "type": "Expense"
-   },
-   {
-      "Amount": 8990.0,
-      "category": "8994",
-      "Description": "biilshd",
-      "date": "2026-06-10 23:40:29",
-      "type": "Expense"
-   },
-   {
-      "Amount": 2000.0,
-      "category": "rent",
-      "Description": "bills",
-      "date": "2026-06-10 23:45:46",
-      "type": "Expense"
-   },
-   {
-      "Amount": 2000.0,
-      "category": "salary",
-      "Description": "income ",
-      "date": "2026-06-10 23:46:10",
-      "type": "Income"
-   },
-   {
-      "Amount": 5000.0,
-      "category": "food",
-      "Description": "n/a",
-      "date": "2026-06-11 12:57:20",
-      "type": "Expense"
-   },
-   {
-      "Amount": 7090.0,
-      "category": "rent",
-      "Description": "na",
-      "date": "2026-06-11 12:58:02",
-      "type": "Expense"
-   },
-   {
-      "Amount": 15.5,
-      "category": "Food",
-      "Description": "Lunch",
-      "date": "2026-06-11 13:27:45",
-      "type": "Expense"
-   }
+    {
+        "type": "Expense",
+        "Amount": 50.5,
+        "category": "food",
+        "Description": "",
+        "date": "2026-06-11 15:02:05"
+    }
 ]

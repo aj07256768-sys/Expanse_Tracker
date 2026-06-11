@@ -31,4 +31,4 @@ class Data_base:
             removed_item = current_data.pop(index) # Alters current_data in place
             self.data_save(current_data)           # Saves remaining clean data
             return removed_item
-        return None
+        return None 

@@ -13,17 +13,17 @@ class Transaction:
             "category": self.category,
             "Description": self.Description,
             "date": self.date,
-            "type": getattr(self, 'type', 'Unknown')  # Safely includes 'Expense' or 'Income' in the dictionary
+            "type": getattr(self, 'type', 'Unknown')  
         }  
 
 
 class Expense(Transaction):
     def __init__(self, Amount, category, Description):
-        super().__init__(Amount, category, Description)  # Fixed: added missing closing underscore
+        super().__init__(Amount, category, Description)  
         self.type = 'Expense' 
 
 
 class Income(Transaction):
     def __init__(self, Amount, category, Description):
-        super().__init__(Amount, category, Description)  # Fixed: added missing closing underscore
-        self.type = 'Income'
+        super().__init__(Amount, category, Description)  
+        self.type = 'Income' 
