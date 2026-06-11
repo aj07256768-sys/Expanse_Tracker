@@ -5,33 +5,26 @@ from datetime import datetime
 def main():
     db = Data_base("Data/db.json")
 
-    # Main parser setup
     parser = argparse.ArgumentParser(description="Financial Tracker: Track income, expenses, and balances.")
     subparsers = parser.add_subparsers(dest="command", required=True, help="Available subcommands")
 
-    # 'expense' command setup
     expense_parser = subparsers.add_parser("expense", help="Add a new expense")
     expense_parser.add_argument("-a", "--amount", type=float, required=True, help="Expense amount")
     expense_parser.add_argument("-c", "--category", type=str, required=True, help="Category (e.g., Food, Rent)")
     expense_parser.add_argument("-d", "--description", type=str, default="", help="Optional description")
 
-    # 'income' command setup
     income_parser = subparsers.add_parser("income", help="Add a new income source")
     income_parser.add_argument("-a", "--amount", type=float, required=True, help="Income amount")
     income_parser.add_argument("-c", "--category", type=str, required=True, help="Category (e.g., Salary, Gift)")
     income_parser.add_argument("-d", "--description", type=str, default="", help="Optional description")
 
-    # 'view' command setup
     subparsers.add_parser("view", help="View transaction history and current balance")
 
-    # 'delete' command setup
     delete_parser = subparsers.add_parser("delete", help="Delete a transaction by index")
     delete_parser.add_argument("-i", "--index", type=int, required=True, help="Index of item to delete")
 
-    # Parse terminal arguments
     args = parser.parse_args()
 
-    # Action Execution routing
     if args.command == "expense":
         date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         new_expense = {"type": "Expense", "Amount": args.amount, "category": args.category, "Description": args.description, "date": date_str}
@@ -50,7 +43,6 @@ def main():
         total_income = 0.0
         total_expense = 0.0
         
-        # Displays indices [0], [1], [2] next to items
         for index, item in enumerate(history):
             print(f"[{index}] [{item['date']}] {item['type']}: ${item['Amount']:.2f} | {item['category']} ({item['Description']})")
             if item['type'] == 'Income':
@@ -67,9 +59,9 @@ def main():
     elif args.command == "delete":
         deleted = db.data_delete(args.index)
         if deleted:
-            print(f"❌ Deleted {deleted['type']} of ${deleted['Amount']:.2f} successfully!")
+            print(f"Deleted {deleted['type']} of ${deleted['Amount']:.2f} successfully!")
         else:
-            print("⚠️ Invalid index. No item was deleted.")
+            print("Invalid index. No item was deleted.")
 
 if __name__ == "__main__":
     main()
