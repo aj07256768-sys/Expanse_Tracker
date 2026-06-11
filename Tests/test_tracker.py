@@ -83,4 +83,4 @@ def test_data_delete_with_invalid_index_returns_none():
     
     deleted_item = db.data_delete(99)
     
-    assert deleted_item is None 
+    assert deleted_item is None  
