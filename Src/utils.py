@@ -10,4 +10,4 @@ def get_non_empty_string(prompt: str) -> str:
         user_input = input(prompt).strip()
         if user_input:
             return user_input
-        print("This field cannot be left blank. Please try again.")
+        print("This field cannot be left blank. Please try again.") 
