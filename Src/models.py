@@ -1,28 +1,29 @@
 from datetime import datetime
+
 class Transaction:
-    def __init_(self,Amount:float,category:str,Description:str= ""):
+    def __init__(self, Amount: float, category: str, Description: str = ""):
         self.Amount = Amount
         self.category = category
-        self.Description = Description 
+        self.Description = Description
+        self.date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    def To_dic(self) -> dic:
+    def To_dic(self) -> dict:
         return {
-            "Amount":self.Amount,
-            "category":self.category,
-            "Description":self.Description
-
-        } 
-
+            "Amount": self.Amount,
+            "category": self.category,
+            "Description": self.Description,
+            "date": self.date,
+            "type": getattr(self, 'type', 'Unknown')  
+        }  
 
 
 class Expense(Transaction):
-    def __init_(self,Amount,category,Description):
-        super().__init_(Amount,Description,category)  
-        self.type='Expense' 
-
+    def __init__(self, Amount, category, Description):
+        super().__init__(Amount, category, Description)  
+        self.type = 'Expense' 
 
 
 class Income(Transaction):
-    def __init_(self,Amount,Description,category):
-        super().__init_(Amount,category,Description)
-        self.type='Income'
+    def __init__(self, Amount, category, Description):
+        super().__init__(Amount, category, Description)  
+        self.type = 'Income'  
