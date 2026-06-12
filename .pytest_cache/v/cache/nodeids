@@ -1,0 +1,8 @@
+[
+  "Tests/test_tracker.py::test_data_append_saves_properly",
+  "Tests/test_tracker.py::test_data_delete_with_invalid_index_returns_none",
+  "Tests/test_tracker.py::test_data_delete_with_valid_index",
+  "Tests/test_tracker.py::test_database_initialization_creates_empty_list",
+  "Tests/test_tracker.py::test_expense_class_serialization",
+  "Tests/test_tracker.py::test_income_class_serialization"
+]

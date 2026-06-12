@@ -1,9 +1,13 @@
 import argparse
 from storage import Data_base
-from datetime import datetime
+from datetime import datetime 
+from rich import print
+from rich.console import Console
+from rich.table import Table
 
 def main():
     db = Data_base("Data/db.json")
+    console = Console()
 
     parser = argparse.ArgumentParser(description="Financial Tracker: Track income, expenses, and balances.")
     subparsers = parser.add_subparsers(dest="command", required=True, help="Available subcommands")
@@ -29,39 +33,67 @@ def main():
         date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         new_expense = {"type": "Expense", "Amount": args.amount, "category": args.category, "Description": args.description, "date": date_str}
         db.data_append(new_expense)
-        print(f"Expense of ${args.amount:.2f} saved successfully!")
+        print(f"[bold green]Expense of ${args.amount:.2f} saved successfully! :rocket:[/bold green]")
 
     elif args.command == "income":
         date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         new_income = {"type": "Income", "Amount": args.amount, "category": args.category, "Description": args.description, "date": date_str}
         db.data_append(new_income)
-        print(f"Income of ${args.amount:.2f} saved successfully!")
+        print(f"[bold green]Income of ${args.amount:.2f} saved successfully! :rocket:[/bold green]")
 
     elif args.command == "view":
         history = db.load_data()
-        print("\n--- Transaction History ---")
+        
+        table = Table(title="\n[bold cyan]--- Transaction History ---[/bold cyan]", title_justify="left")
+        
+        table.add_column("Index", style="dim", justify="center")
+        table.add_column("Date", style="yellow")
+        table.add_column("Type", justify="center")
+        table.add_column("Amount", justify="right")
+        table.add_column("Category", style="magenta")
+        table.add_column("Description", style="italic dim")
+
         total_income = 0.0
         total_expense = 0.0
         
         for index, item in enumerate(history):
-            print(f"[{index}] [{item['date']}] {item['type']}: ${item['Amount']:.2f} | {item['category']} ({item['Description']})")
+            amount_val = item['Amount']
+            
             if item['type'] == 'Income':
-                total_income += item['Amount']
-            elif item['type'] == 'Expense':
-                total_expense += item['Amount']
+                total_income += amount_val
+                type_str = "[bold green]Income[/bold green]"
+                amount_str = f"[bold green]${amount_val:.2f}[/bold green]"
+            else:
+                total_expense += amount_val
+                type_str = "[bold red]Expense[/bold red]"
+                amount_str = f"[bold red]${amount_val:.2f}[/bold red]"
+                
+            table.add_row(
+                str(index),
+                item['date'],
+                type_str,
+                amount_str,
+                item['category'],
+                item['Description'] or "-"
+            )
         
-        print("-" * 50)
-        print(f"Total Income:   ${total_income:.2f}")
-        print(f"Total Expenses: ${total_expense:.2f}")
-        print(f"Current Balance: ${total_income - total_expense:.2f}")
-        print("-" * 50)
+        console.print(table)
+        
+        balance = total_income - total_expense
+        balance_color = "green" if balance >= 0 else "red"
+        
+        print("\n[bold underline cyan]Financial Summary[/bold underline cyan]")
+        print(f"Total Income:    [bold green]${total_income:.2f}[/bold green]")
+        print(f"Total Expenses:  [bold red]${total_expense:.2f}[/bold red]")
+        print(f"Current Balance: [bold {balance_color}]${balance:.2f}[/bold {balance_color}]")
+        print("[cyan]" + "-" * 30 + "[/cyan]\n")
 
     elif args.command == "delete":
         deleted = db.data_delete(args.index)
         if deleted:
-            print(f"Deleted {deleted['type']} of ${deleted['Amount']:.2f} successfully!")
+            print(f"[bold yellow]Deleted {deleted['type']} of ${deleted['Amount']:.2f} successfully![/bold yellow]")
         else:
-            print("Invalid index. No item was deleted.")
+            print("[bold red]Invalid index. No item was deleted.[/bold red]")
 
 if __name__ == "__main__":
     main()
