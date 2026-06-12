@@ -12,20 +12,20 @@ The project is modularly organized into distinct folders and files to ensure cle
 EXPENSE_TRACKER/
 │
 ├── Data/
-│   └── db.json          # Local JSON database storing your transactions
+│   └── db.json
 │
 ├── Src/
-│   ├── __init__.py      # Makes Src a recognizable Python package
-│   ├── app.py           # Application entry point and CLI command logic
-│   ├── models.py        # Business logic definitions (Expense/Income classes)
-│   ├── storage.py       # Functions to handle reading and writing to db.json
-│   └── utils.py         # Helper functions (date formatting, calculations)
+│   ├── __init__.py
+│   ├── app.py
+│   ├── models.py
+│   ├── storage.py
+│   └── utils.py
 │
 ├── Tests/
-│   ├── __init__.py      # Makes Tests a recognizable Python package
-│   └── test_tracker.py  # Unit tests to ensure core logic runs flawlessly
+│   ├── __init__.py
+│   └── test_tracker.py
 │
-├── .gitignore           # Prevents system files and caches from being tracked
-├── Pipfile              # Defines project dependencies for Pipenv
-└── Pipfile.lock         # Locks exact dependency versions for stability
+├── .gitignore
+├── Pipfile
+└── Pipfile.lock
 ```
