@@ -15,7 +15,6 @@ EXPENSE_TRACKER/
 │ └── test_tracker.py
 │
 ├── .env  
-├── .env.example  
 ├── .gitignore
 ├── Pipfile
 └── Pipfile.lock
