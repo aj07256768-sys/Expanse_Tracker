@@ -26,5 +26,12 @@
         "category": "food",
         "Description": "",
         "date": "2026-06-12 14:12:56"
+    },
+    {
+        "type": "Expense",
+        "Amount": 70.0,
+        "category": "cloth",
+        "Description": "leisure",
+        "date": "2026-06-12 15:09:19"
     }
 ]
