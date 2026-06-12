@@ -12,5 +12,54 @@
         "category": "899",
         "Description": "",
         "date": "2026-06-12 09:52:48"
+    },
+    {
+        "type": "Income",
+        "Amount": 700.0,
+        "category": "800",
+        "Description": "commision",
+        "date": "2026-06-12 11:29:42"
+    },
+    {
+        "type": "Income",
+        "Amount": 80.0,
+        "category": "wage",
+        "Description": "",
+        "date": "2026-06-12 12:16:30"
+    },
+    {
+        "type": "Income",
+        "Amount": 80.0,
+        "category": "salary",
+        "Description": "",
+        "date": "2026-06-12 12:17:02"
+    },
+    {
+        "type": "Income",
+        "Amount": 980.0,
+        "category": "salary",
+        "Description": "",
+        "date": "2026-06-12 12:17:16"
+    },
+    {
+        "type": "Expense",
+        "Amount": 980.0,
+        "category": "salary",
+        "Description": "",
+        "date": "2026-06-12 12:17:36"
+    },
+    {
+        "type": "Expense",
+        "Amount": 80.0,
+        "category": "salary",
+        "Description": "",
+        "date": "2026-06-12 12:17:48"
+    },
+    {
+        "type": "Expense",
+        "Amount": 50.0,
+        "category": "food",
+        "Description": "",
+        "date": "2026-06-12 12:18:57"
     }
 ]
