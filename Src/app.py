@@ -96,4 +96,4 @@ def main():
             print("[bold red]Invalid index. No item was deleted.[/bold red]")
 
 if __name__ == "__main__":
-    main()
+    main()  

@@ -33,5 +33,19 @@
         "category": "food",
         "Description": "lunch",
         "date": "2026-06-12 15:38:23"
+    },
+    {
+        "type": "Expense",
+        "Amount": 700.0,
+        "category": "cloth",
+        "Description": "",
+        "date": "2026-06-12 16:07:55"
+    },
+    {
+        "type": "Income",
+        "Amount": 700.0,
+        "category": "cloth",
+        "Description": "",
+        "date": "2026-06-12 16:08:16"
     }
 ]
