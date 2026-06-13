@@ -1,5 +1,6 @@
 import argparse
 from storage import Data_base
+from models import Expense, Income  # Imported your OOP models here!
 from datetime import datetime 
 from rich import print
 from rich.console import Console
@@ -12,33 +13,44 @@ def main():
     parser = argparse.ArgumentParser(description="Financial Tracker: Track income, expenses, and balances.")
     subparsers = parser.add_subparsers(dest="command", required=True, help="Available subcommands")
 
+    # Expense Parser
     expense_parser = subparsers.add_parser("expense", help="Add a new expense")
     expense_parser.add_argument("-a", "--amount", type=float, required=True, help="Expense amount")
     expense_parser.add_argument("-c", "--category", type=str, required=True, help="Category (e.g., Food, Rent)")
     expense_parser.add_argument("-d", "--description", type=str, default="", help="Optional description")
 
+    # Income Parser
     income_parser = subparsers.add_parser("income", help="Add a new income source")
     income_parser.add_argument("-a", "--amount", type=float, required=True, help="Income amount")
     income_parser.add_argument("-c", "--category", type=str, required=True, help="Category (e.g., Salary, Gift)")
     income_parser.add_argument("-d", "--description", type=str, default="", help="Optional description")
 
+    # View Parser
     subparsers.add_parser("view", help="View transaction history and current balance")
 
+    # Delete Parser
     delete_parser = subparsers.add_parser("delete", help="Delete a transaction by index")
     delete_parser.add_argument("-i", "--index", type=int, required=True, help="Index of item to delete")
+
+    # Update Parser (NEW)
+    update_parser = subparsers.add_parser("update", help="Update an existing transaction by index")
+    update_parser.add_argument("-i", "--index", type=int, required=True, help="Index of item to update")
+    update_parser.add_argument("-a", "--amount", type=float, help="New amount (optional)")
+    update_parser.add_argument("-c", "--category", type=str, help="New category (optional)")
+    update_parser.add_argument("-d", "--description", type=str, help="New description (optional)")
 
     args = parser.parse_args()
 
     if args.command == "expense":
-        date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        new_expense = {"type": "Expense", "Amount": args.amount, "category": args.category, "Description": args.description, "date": date_str}
-        db.data_append(new_expense)
+        # Using your model class now!
+        expense_obj = Expense(args.amount, args.category, args.description)
+        db.data_append(expense_obj.To_dic())
         print(f"[bold green]Expense of ${args.amount:.2f} saved successfully! :rocket:[/bold green]")
 
     elif args.command == "income":
-        date_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        new_income = {"type": "Income", "Amount": args.amount, "category": args.category, "Description": args.description, "date": date_str}
-        db.data_append(new_income)
+        # Using your model class now!
+        income_obj = Income(args.amount, args.category, args.description)
+        db.data_append(income_obj.To_dic())
         print(f"[bold green]Income of ${args.amount:.2f} saved successfully! :rocket:[/bold green]")
 
     elif args.command == "view":
@@ -95,5 +107,21 @@ def main():
         else:
             print("[bold red]Invalid index. No item was deleted.[/bold red]")
 
+    elif args.command == "update":
+        # Build payload of items the user actually wants to update
+        update_payload = {}
+        if args.amount is not None: update_payload["Amount"] = args.amount
+        if args.category is not None: update_payload["category"] = args.category
+        if args.description is not None: update_payload["Description"] = args.description
+        
+        if not update_payload:
+            print("[bold red]Please specify at least one field to update using -a, -c, or -d.[/bold red]")
+        else:
+            updated_item = db.data_update(args.index, update_payload)
+            if updated_item:
+                print(f"[bold yellow]Successfully updated {updated_item['type']} at index {args.index}! :sparkles:[/bold yellow]")
+            else:
+                print("[bold red]Invalid index. No item was updated.[/bold red]")
+
 if __name__ == "__main__":
-    main()  
+    main()

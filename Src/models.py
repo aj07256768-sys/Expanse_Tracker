@@ -26,4 +26,4 @@ class Expense(Transaction):
 class Income(Transaction):
     def __init__(self, Amount, category, Description):
         super().__init__(Amount, category, Description)  
-        self.type = 'Income'  
+        self.type = 'Income'

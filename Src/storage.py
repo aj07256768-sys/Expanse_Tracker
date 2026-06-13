@@ -31,4 +31,17 @@ class Data_base:
             removed_item = current_data.pop(index) 
             self.data_save(current_data)           
             return removed_item
-        return None  
+        return None
+
+    def data_update(self, index: int, updated_fields: dict):
+        current_data = self.load_data()
+        
+        if 0 <= index < len(current_data):
+            # Update only the fields that the user actually passed in
+            for key, value in updated_fields.items():
+                if value is not None:
+                    current_data[index][key] = value
+            
+            self.data_save(current_data)
+            return current_data[index]
+        return None
