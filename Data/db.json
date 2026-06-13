@@ -2,14 +2,14 @@
     {
         "type": "Income",
         "Amount": 980.0,
-        "category": "salary",
+        "category": "wage",
         "Description": "",
         "date": "2026-06-12 12:17:16"
     },
     {
         "type": "Expense",
-        "Amount": 50.0,
-        "category": "food",
+        "Amount": 980.0,
+        "category": "wage",
         "Description": "",
         "date": "2026-06-12 12:18:57"
     },
