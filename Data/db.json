@@ -43,8 +43,8 @@
     },
     {
         "type": "Income",
-        "Amount": 700.0,
-        "category": "cloth",
+        "Amount": 1200.0,
+        "category": "wage",
         "Description": "",
         "date": "2026-06-12 16:08:16"
     }
